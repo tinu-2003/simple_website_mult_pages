@@ -9,38 +9,114 @@
 </head>
 <body>
     <!-- header section -->
-<div>
-    <h4>welcome user</h4>
-    <button>logout</button>
-</div>
+<nav class="navbar navbar-light bg-light px-4">
+    <h4 class="navbar-text text-primary fw-bold   mb-0">welcome user</h4>
+    <button class="btn btn-danger">logout</button>
+</nav>
 
 <!-- center -->
 
-  <div>
-    <!-- image -->
-     <div>
- <img src="" alt="" srcset="">
-     </div>
-<!-- employee details -->
-     <div>
-<h5>Add employee details</h5>
-
-<form action="">
-    <input type="text" placeholder="Employe id">
-    <input type="text" placeholder="Employe name">
-    <input type="text" placeholder="Employe Address">
-    <input type="text" placeholder="Employe Designation">
-    <input type="text" placeholder="Employe Experience">
-    <input type="text" placeholder="Employe salary">
-    <button>Add Employee</button>
-</form>
-     </div>
-
-     <!-- search -->
-      <input type="text" placeholder="search Id">
-      <button>Search</button>
+  <div class="container py-5">
+<div class="row align-items-center">
+        <!-- image -->
+         <div class="col-lg-4 text-center mb-4 mb-lg-0 ">
+     <img src="https://rsssc.org/assest/img/Login.jpg" alt="no-image-found " class="img-fluid" style="max-height: 300px;" >
+         </div>
+    <!--Add employee details -->
+         <div class="col-lg-4 mb-4">
+  <div class="p-4 bg-white rounded shadow-sm">
+        <h5 class="text-center mb-4 text-primary fw-bold">Add employee details</h5>     
+        <form action="">
+            <input type="text" class="form-control mb-4" placeholder="Employe id" id="empl_id">
+            <input type="text" class="form-control mb-4" placeholder="Employe name" id="empl_name">
+            <input type="text" class="form-control mb-4" placeholder="Employe Address" id="empl_address">
+            <input type="text" class="form-control mb-4" placeholder="Employe Designation" id="empl_deg">
+            <input type="text" class="form-control mb-4" placeholder="Employe Experience" id="empl_exper">
+            <input type="text" class="form-control mb-4" placeholder="Employe salary" id="empl_salary">
+            <button type="submit" onclick="addEmp()" class="btn btn-primary w-100">Add Employee</button>
+        </form>
+  </div>
+         </div>
+    
+         <!-- search -->
+          <div class="col-lg-4 mb-4 ">
+              <div class="p-4 bg-white rounded shadow-sm ">
+                  <!-- <form> -->
+                      <input type="text" class="form-control mb-3 " id="id" placeholder="search Id">
+                      <button type="submit" class="btn btn-primary w-100 mb-4" onclick="search()" >Search</button>
+                      <div id="d1" class=" d-flex align-items-center justify-content-center">
+                            
+                      </div>
+                  <!-- </form> -->
+              </div>
+          </div>
+</div>
      
   </div>
+
+  <!-- js -->
+
+     <script>
+
+        function addEmp(){
+
+            let employee={
+                id:empl_id.value,
+                name:empl_name.value,
+                address:empl_address.value,
+                desig:empl_deg.value,
+                experience:empl_exper.value,
+                salary:empl_salary.value
+            }
+
+          if(employee.id==""||employee.name==""||employee.address==""||employee.desig==""||employee.experience==""||employee.salary==""){
+            alert("Fill the  form")
+          }
+
+          else{
+            localStorage.setItem(empl_id.value,JSON.stringify(employee))
+          }
+            
+
+        }
+
+
+        function search(){
+            
+
+            
+            let userid = id.value
+            // console.log(userid);
+           
+            let userdata = JSON.parse(localStorage.getItem(userid))
+            // console.log(userdata);
+            // let i = userdata.id
+            // console.log(i);
+
+
+             if(userdata){
+
+             
+            d1.innerHTML=`
+            <div class="card "  style="width: 18rem;">
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ID : ${userdata.id}</li>
+    <li class="list-group-item">Name : ${userdata.name}</li>
+    <li class="list-group-item">Address : ${userdata.address}</li>
+    <li class="list-group-item">Designation : ${userdata.desig}</li>
+    <li class="list-group-item">Experience : ${userdata.experience}</li>
+    <li class="list-group-item"> slaary : ${userdata.salary}</li>
+  </ul>
+
+</div> `
+             }  
+
+             else{
+                d1.innerHTML="❌👤 user not register"
+             }
+            
+        }
+     </script>
 
 </body>
 </html>
