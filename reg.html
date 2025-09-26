@@ -16,7 +16,7 @@
           <div class="card-body">
             <h3 class="text-center mb-4">Register Here</h3>
 
-            <form>
+            <!-- <form> -->
               <div class="mb-3">
                 <input type="text" class="form-control" id="firstName" placeholder="first name">
               </div>
@@ -46,7 +46,7 @@
               </div>
 
               <button type="submit" onclick="Register()" class="btn btn-primary w-100">Submit</button>
-            </form>
+            <!-- </form> -->
 
           </div>
         </div>
@@ -80,7 +80,7 @@ if( userdetails.fname==""|| userdetails.lname==""|| userdetails.email==""|| user
 else{
   localStorage.setItem("userdata",JSON.stringify(userdetails))
   alert("register Successful")
-  window.location.href='./login.html'
+  window.location.href="./login.html"
 }
         }
 

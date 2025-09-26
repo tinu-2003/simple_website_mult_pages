@@ -12,10 +12,10 @@
   <div class="container d-flex justify-content-center align-items-center vh-100">
     <div class="card shadow p-4" style="width: 350px;">
       <h3 class="text-center mb-4">Login.....</h3>
-      <form>
+      <!-- <form> -->
         <div class="mb-3">
           <label for="" class="form-label">Your Email</label>
-          <input type="email" class="form-control" id=" email" placeholder="Enter email" required>
+          <input type="email" class="form-control" id="email" placeholder="Enter email" required>
         </div>
 
         <div class="mb-3">
@@ -28,8 +28,8 @@
           <label class="form-check-label" for="">Remember me</label>
         </div>
 
-        <button onclick="login()" class="btn btn-primary w-100">Submit</button>
-      </form>
+        <button type="button" onclick="login()" class="btn btn-primary w-100">Submit</button>
+      <!-- </form> -->
     </div>
   </div>
 
@@ -38,12 +38,22 @@
   <script>
 
     function login(){
-    let useremail= email.value
-    let userpassword= password.value
+    let useremail= document.getElementById("email").value;
+    let userpassword= document.getElementById("password").value
 
     let olddata = JSON.parse(localStorage.getItem("userdata"))
     console.log(olddata);
+
+    if(olddata.email==useremail && olddata.pass==userpassword){
+      alert("login succesful")
+      window.location.href="./dasboard.html"
+    }
+
+    else{
+      alert("invalid user")
+    }
         }
+
   </script>
 </body>
 </html>
